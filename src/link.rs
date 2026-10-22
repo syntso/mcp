@@ -1,5 +1,5 @@
 use synt_client::{Autostart, Client};
-use synt_platform::Endpoint;
+use synt_transport::Endpoint;
 use synt_proto::{ClientKind, Hello};
 use tokio::sync::OnceCell;
 

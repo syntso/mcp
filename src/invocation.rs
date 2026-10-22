@@ -3,7 +3,7 @@ use std::ffi::OsString;
 use std::path::PathBuf;
 
 use synt_client::Autostart;
-use synt_platform::Endpoint;
+use synt_transport::Endpoint;
 
 use crate::BridgeError;
 use crate::link::Link;
