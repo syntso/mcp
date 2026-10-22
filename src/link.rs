@@ -1,6 +1,6 @@
 use synt_client::{Autostart, Client};
-use synt_transport::Endpoint;
 use synt_proto::{ClientKind, Hello};
+use synt_transport::Endpoint;
 use tokio::sync::OnceCell;
 
 use crate::BridgeError;
