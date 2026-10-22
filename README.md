@@ -8,20 +8,36 @@ Claude Code, Claude Desktop, Cursor, Codex, VS Code and any other MCP client get
 
 ## Install
 
-You need [Rust](https://rustup.rs). Install the core and the bridge into the same folder, so the bridge can start the core when it is not running:
+Every [Synt release](https://github.com/syntso/synt/releases/latest) has one archive per system with both programs, `synt-core` and `synt-mcp`. Keep them in the same folder, so the bridge can start the core when it is not running:
 
 ```bash
-cargo install --locked --git https://github.com/syntso/synt synt-core
-cargo install --locked --git https://github.com/syntso/mcp
+curl -fsSLO https://github.com/syntso/synt/releases/latest/download/synt-macos-arm64.tar.gz
+mkdir -p ~/.local/bin && tar -xzf synt-macos-arm64.tar.gz -C ~/.local/bin
 ```
 
-Both land in `~/.cargo/bin`. Check:
+| System | Archive |
+|---|---|
+| macOS, Apple silicon | `synt-macos-arm64.tar.gz` |
+| macOS, Intel | `synt-macos-x64.tar.gz` |
+| Linux, x86-64 | `synt-linux-x64.tar.gz` |
+| Linux, ARM64 | `synt-linux-arm64.tar.gz` |
+| Windows, x86-64 | `synt-windows-x64.zip` |
+
+Make sure `~/.local/bin` is on your `PATH`, then check:
 
 ```bash
 synt-mcp --version
 ```
 
-On macOS, a core you build yourself is not signed, so it cannot keep its journal key in the protected keychain and refuses to start. Until you have the signed Synt app, let it use the login keychain, which other programs of your user can read, by adding `--allow-login-keychain` to `synt-mcp` in your client's config.
+On macOS the builds are not signed yet, so the core cannot keep its journal key in the protected keychain and refuses to start. Until they are, let it use the login keychain, which other programs of your user can read, by adding `--allow-login-keychain` to `synt-mcp` in your client's config.
+
+To build the bridge yourself, you need [Rust](https://rustup.rs):
+
+```bash
+cargo install --locked --git https://github.com/syntso/mcp
+```
+
+It then looks for `synt-core` next to itself in `~/.cargo/bin`; point it elsewhere with `--core`.
 
 <br />
 
@@ -33,7 +49,7 @@ On macOS, a core you build yourself is not signed, so it cannot keep its journal
 claude mcp add synt -- synt-mcp
 ```
 
-On macOS with a self-built core:
+On macOS, until the builds are signed:
 
 ```bash
 claude mcp add synt -- synt-mcp --allow-login-keychain
@@ -135,4 +151,4 @@ cargo test
 
 ## License
 
-[FSL-1.1-ALv2](LICENSE.md). Each version becomes Apache 2.0 two years after its release.
+[Apache-2.0](LICENSE).
