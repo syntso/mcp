@@ -13,7 +13,7 @@ Pull requests into `dev` are squash-merged, so the pull request title becomes th
 
 ## Code
 
-The bridge follows the rules of the [core](https://github.com/syntso/synt/blob/dev/CONTRIBUTING.md): one main type per file, the folder's main type in the file beside the folder, errors with `thiserror`, no `unwrap()` outside tests, no comments.
+The bridge follows the rules of all Synt code: one main type per file, the folder's main type in the file beside the folder, errors with `thiserror`, no `unwrap()` outside tests, no comments.
 
 - `invocation.rs` reads the command line.
 - `link.rs` holds the connection to the core.
